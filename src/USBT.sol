@@ -43,9 +43,10 @@ contract USBT is IERC721Metadata {
         uint256 tokenId = uint256(uint160(msg.sender));
         uint256 tokenData = _tokenData[tokenId];
 
+        if (tokenData & 1 == 1) revert AlreadyClaimed();
+
         _beforeTokenTransfer(address(0), msg.sender, tokenId, 1);
 
-        if (tokenData & 1 == 1) revert AlreadyClaimed();
         _tokenData[tokenId] = tokenData | 1;
 
         emit Transfer(address(0), msg.sender, tokenId);
@@ -57,10 +58,11 @@ contract USBT is IERC721Metadata {
         uint256 tokenId = uint256(uint160(msg.sender));
         uint256 tokenData = _tokenData[tokenId];
 
-        _beforeTokenTransfer(msg.sender, address(0), tokenId, 1);
-
         if (tokenData & 1 == 0) revert InvalidTokenId();
         if (tokenData & 2 == 2) revert InvalidTokenId();
+        
+        _beforeTokenTransfer(msg.sender, address(0), tokenId, 1);
+
         _tokenData[tokenId] = tokenData | 2;
 
         emit Transfer(msg.sender, address(0), tokenId);
