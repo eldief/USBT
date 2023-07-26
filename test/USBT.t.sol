@@ -8,7 +8,7 @@ import {IERC721} from "../src/interfaces/IERC721.sol";
 import {IERC721Metadata} from "../src/interfaces/IERC721Metadata.sol";
 import {USBT} from "../src/USBT.sol";
 import {USBTMock} from "../src/mocks/USBTMock.sol";
-import {LibString} from "solady/utils/LibString.sol";
+import {LibString} from "../src/libraries/LibString.sol";
 
 contract USBTTest is Test {
     using LibString for uint256;

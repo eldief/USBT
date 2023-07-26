@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import {IERC165} from "./interfaces/IERC165.sol";
 import {IERC721} from "./interfaces/IERC721.sol";
 import {IERC721Metadata} from "./interfaces/IERC721Metadata.sol";
-import {LibString} from "solady/utils/LibString.sol";
+import {LibString} from "./libraries/LibString.sol";
 
 contract USBT is IERC721Metadata {
     using LibString for uint256;
